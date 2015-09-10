@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd">
+
+    <changeSet id="add-access-log-table" author="bodeng">
+        <createTable tableName="audit_access_log">
+            <column name="id" type="BIGINT">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="username" type="VARCHAR(255)"/>
+            <column name="log_instant" type="DATETIME">
+                <constraints nullable="false"/>
+            </column>
+            <column name="request_uri" type="TEXT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="from_ip" type="VARCHAR(39)"> <!-- sufficient for IPv6 -->
+                <constraints nullable="false"/>
+            </column>
+            <column name="user_agent" type="VARCHAR(500)"/> <!-- might have to truncate user agent -->
+        </createTable>
+    </changeSet>
+
+</databaseChangeLog>
