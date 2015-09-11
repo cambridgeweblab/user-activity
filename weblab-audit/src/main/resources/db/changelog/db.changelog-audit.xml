@@ -24,4 +24,19 @@
         </createTable>
     </changeSet>
 
+    <changeSet id="ensure-hibernate-sequences-table" author="bodeng">
+        <preConditions onFail="MARK_RAN" onFailMessage="hibernate_sequences already created">
+            <not>
+                <tableExists tableName="hibernate_sequences"/>
+            </not>
+        </preConditions>
+        <createTable tableName="hibernate_sequences">
+            <column name="sequence_name" type="VARCHAR(40)">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="next_val" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
 </databaseChangeLog>
