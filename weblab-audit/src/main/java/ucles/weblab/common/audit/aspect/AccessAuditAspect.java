@@ -57,7 +57,7 @@ public class AccessAuditAspect {
     private void inRestController() {
     }
 
-    @Pointcut("execution(public * *(..)) && @annotation(ucles.weblab.certstat.common.webapi.AccessAudited)")
+    @Pointcut("execution(public * *(..)) && @annotation(ucles.weblab.common.webapi.AccessAudited)")
     private void publicMethodAnnotatedWithAccessAudited() {
     }
 
