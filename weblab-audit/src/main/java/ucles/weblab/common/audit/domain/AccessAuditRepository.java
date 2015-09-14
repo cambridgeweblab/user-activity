@@ -1,5 +1,10 @@
 package ucles.weblab.common.audit.domain;
 
+import org.springframework.data.jpa.repository.Query;
+
+import java.net.URI;
+import java.util.List;
+
 /**
  * DDD repository interface - persistence-technology-neutral interface providing repository (i.e. CRUD) methods for
  * manipulating access audit records.
@@ -14,4 +19,6 @@ package ucles.weblab.common.audit.domain;
  */
 public interface AccessAuditRepository {
     AccessAuditEntity save(AccessAuditEntity entity);
+
+    List<? extends AccessAuditEntity> findByWhatLike(String uriLike);
 }
