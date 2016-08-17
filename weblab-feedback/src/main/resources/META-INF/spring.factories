@@ -1,0 +1,2 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+  ucles.weblab.exampay.feedback.config.FeedbackAutoConfiguration
