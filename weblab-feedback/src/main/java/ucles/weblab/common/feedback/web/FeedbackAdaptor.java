@@ -1,8 +1,8 @@
-package ucles.weblab.exampay.feedback.web;
+package ucles.weblab.common.feedback.web;
 
 import java.util.Optional;
-import java.util.UUID;
-import ucles.weblab.exampay.feedback.domain.Feedback;
+
+import ucles.weblab.common.feedback.domain.Feedback;
 
 /**
  * 

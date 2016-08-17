@@ -1,8 +1,8 @@
-package ucles.weblab.exampay.feedback.domain.jpa;
+package ucles.weblab.common.feedback.domain.jpa;
 
-import ucles.weblab.exampay.feedback.domain.Feedback;
-import ucles.weblab.exampay.feedback.domain.FeedbackEntity;
-import ucles.weblab.exampay.feedback.domain.FeedbackFactory;
+import ucles.weblab.common.feedback.domain.Feedback;
+import ucles.weblab.common.feedback.domain.FeedbackFactory;
+import ucles.weblab.common.feedback.domain.FeedbackEntity;
 
 import java.util.UUID;
 

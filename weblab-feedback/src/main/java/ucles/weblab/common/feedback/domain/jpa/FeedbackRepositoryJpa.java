@@ -1,7 +1,7 @@
-package ucles.weblab.exampay.feedback.domain.jpa;
+package ucles.weblab.common.feedback.domain.jpa;
 
 import org.springframework.data.repository.Repository;
-import ucles.weblab.exampay.feedback.domain.FeedbackRepository;
+import ucles.weblab.common.feedback.domain.FeedbackRepository;
 
 import java.util.Optional;
 import java.util.UUID;

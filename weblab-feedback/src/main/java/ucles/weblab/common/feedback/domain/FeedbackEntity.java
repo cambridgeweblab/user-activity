@@ -1,4 +1,4 @@
-package ucles.weblab.exampay.feedback.domain;
+package ucles.weblab.common.feedback.domain;
 
 import java.time.Instant;
 import java.util.UUID;

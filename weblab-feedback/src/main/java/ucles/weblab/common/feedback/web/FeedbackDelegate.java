@@ -1,13 +1,13 @@
-package ucles.weblab.exampay.feedback.web;
+package ucles.weblab.common.feedback.web;
 
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.hateoas.mvc.ControllerLinkBuilder;
 import ucles.weblab.common.audit.domain.AccessAuditEntity;
 import ucles.weblab.common.audit.domain.AccessAuditRepository;
-import ucles.weblab.exampay.feedback.domain.Feedback;
-import ucles.weblab.exampay.feedback.domain.FeedbackEntity;
-import ucles.weblab.exampay.feedback.domain.FeedbackFactory;
-import ucles.weblab.exampay.feedback.domain.FeedbackRepository;
+import ucles.weblab.common.feedback.domain.Feedback;
+import ucles.weblab.common.feedback.domain.FeedbackEntity;
+import ucles.weblab.common.feedback.domain.FeedbackFactory;
+import ucles.weblab.common.feedback.domain.FeedbackRepository;
 
 import java.util.List;
 import java.util.Map;

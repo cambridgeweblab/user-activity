@@ -1,4 +1,4 @@
-package ucles.weblab.exampay.feedback.web;
+package ucles.weblab.common.feedback.web;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import org.springframework.hateoas.ResourceSupport;
