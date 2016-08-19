@@ -48,7 +48,7 @@ import java.util.function.Function;
 import java.util.function.Supplier;
 import javax.persistence.AttributeConverter;
 import javax.persistence.Converter;
-import javax.transaction.Transactional;
+import org.springframework.transaction.annotation.Transactional;
 
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.notNullValue;

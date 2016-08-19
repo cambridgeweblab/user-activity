@@ -3,6 +3,7 @@ package ucles.weblab.common.feedback.web;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.hateoas.mvc.ResourceAssemblerSupport;
+import org.springframework.stereotype.Component;
 import ucles.weblab.common.feedback.domain.FeedbackEntity;
 
 import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
@@ -13,11 +14,9 @@ import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
  * 
  * @author Sukhraj
  */
-@Configuration
+@Component
 public class FeedbackResourceAssembler extends ResourceAssemblerSupport<FeedbackEntity, FeedbackResource>{
         
-    
-    @Autowired
     public FeedbackResourceAssembler() {
         super(FeedbackController.class, FeedbackResource.class);
     }
