@@ -10,6 +10,7 @@ import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.orm.jpa.EntityScan;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.*;
 import org.springframework.data.jpa.convert.threeten.Jsr310JpaConverters;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
@@ -143,13 +144,15 @@ public class FeedbackController_IT extends ucles.weblab.common.test.webapi.Abstr
         public ResourceSchemaCreator resourceSchemaCreator(SecurityChecker securityChecker,
                                                            CrossContextConversionService crossContextConversionService,
                                                            EnumSchemaCreator enumSchemaCreator,
-                                                           JsonSchemaFactory jsonSchemaFactory) {
+                                                           JsonSchemaFactory jsonSchemaFactory,
+                                                           MessageSource messageSource) {
 
             return new ResourceSchemaCreator(securityChecker,
                     new ObjectMapper(),
                     crossContextConversionService,
                     enumSchemaCreator,
-                    jsonSchemaFactory);
+                    jsonSchemaFactory,
+                    messageSource);
         }
 
         static class Converters {
