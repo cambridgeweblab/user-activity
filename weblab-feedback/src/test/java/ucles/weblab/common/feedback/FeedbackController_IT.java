@@ -9,15 +9,13 @@ import org.junit.runner.RunWith;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.orm.jpa.EntityScan;
-import org.springframework.boot.test.SpringApplicationConfiguration;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.*;
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.jpa.convert.threeten.Jsr310JpaConverters;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler;
 import org.springframework.security.access.expression.method.MethodSecurityExpressionHandler;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MvcResult;
 import ucles.weblab.common.audit.aspect.AccessAuditAspect;
 import ucles.weblab.common.audit.domain.AccessAudit;
@@ -42,7 +40,6 @@ import ucles.weblab.common.xc.service.CrossContextConversionServiceImpl;
 import java.net.InetAddress;
 import java.net.URI;
 import java.net.UnknownHostException;
-import java.util.Currency;
 import java.util.UUID;
 import java.util.function.Function;
 import java.util.function.Supplier;
@@ -62,13 +59,12 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 /**
- * Test class to test REST API 
- * 
+ * Test class to test REST API
+ *
  * @author Sukhraj
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@SpringApplicationConfiguration
-@WebAppConfiguration("classpath:/public")
+@SpringBootTest("classpath:/public")
 @Transactional
 public class FeedbackController_IT extends ucles.weblab.common.test.webapi.AbstractRestController_IT {
     @Configuration
@@ -130,8 +126,7 @@ public class FeedbackController_IT extends ucles.weblab.common.test.webapi.Abstr
 
         @Bean
         CrossContextConversionService crossContextConversionService() {
-            CrossContextConversionServiceImpl crossContextConversionService = new CrossContextConversionServiceImpl();
-            return crossContextConversionService;
+            return new CrossContextConversionServiceImpl();
         }
 
         @Bean
