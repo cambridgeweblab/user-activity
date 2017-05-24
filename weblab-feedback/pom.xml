@@ -5,7 +5,7 @@
     <parent>
         <artifactId>weblab-common-java</artifactId>
         <groupId>ucles.weblab</groupId>
-        <version>0.4-SNAPSHOT</version>
+        <version>0.5-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
@@ -35,12 +35,12 @@
     </build>
 
     <dependencies>
-        
+
         <!-- WEB LAB -->
         <dependency>
             <groupId>ucles.weblab</groupId>
             <artifactId>weblab-common</artifactId>
-        </dependency>      
+        </dependency>
         <dependency>
             <groupId>ucles.weblab</groupId>
             <artifactId>weblab-cross-context</artifactId>
@@ -54,7 +54,7 @@
             <groupId>ucles.weblab</groupId>
             <artifactId>weblab-json-schema</artifactId>
         </dependency>
-        
+
         <!-- SPRING -->
         <dependency>
             <groupId>org.springframework.hateoas</groupId>
@@ -86,7 +86,7 @@
             <optional>true</optional>
         </dependency>
 
-        
+
         <!-- Other Java -->
         <dependency>
             <groupId>commons-lang</groupId>
@@ -120,7 +120,7 @@
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
             <scope>test</scope>
-        </dependency>                
+        </dependency>
         <dependency>
             <groupId>commons-beanutils</groupId>
             <artifactId>commons-beanutils</artifactId>

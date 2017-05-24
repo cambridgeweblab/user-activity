@@ -8,7 +8,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
-import org.springframework.boot.orm.jpa.EntityScan;
+import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.*;
@@ -17,6 +17,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler;
 import org.springframework.security.access.expression.method.MethodSecurityExpressionHandler;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MvcResult;
 import ucles.weblab.common.audit.aspect.AccessAuditAspect;
 import ucles.weblab.common.audit.domain.AccessAudit;
@@ -65,7 +66,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * @author Sukhraj
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@SpringBootTest("classpath:/public")
+@SpringBootTest
+@WebAppConfiguration("classpath:/public")
 @Transactional
 public class FeedbackController_IT extends ucles.weblab.common.test.webapi.AbstractRestController_IT {
     @Configuration
