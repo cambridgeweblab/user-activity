@@ -22,22 +22,22 @@ import static java.util.stream.Collectors.toMap;
 
 /**
  * Delegate class to handle interactions between repositories and REST controllers
- * 
+ *
  * @author Sukhraj
  */
 public class FeedbackDelegate {
 
     private final FeedbackFactory feedbackFactory;
-    
+
     private final FeedbackRepository feedbackRepository;
-    
+
     private final AccessAuditRepository accessAuditRepository;
 
     private final FeedbackResourceAssembler feedbackResourceAssembler;
-    
+
     private final Function<FeedbackResource, Feedback> feedbackResourceToValue;
 
-    
+
     public FeedbackDelegate(FeedbackFactory feedbackFactory,
                             FeedbackRepository feedbackRepository,
                             AccessAuditRepository accessAuditRepository, FeedbackResourceAssembler feedbackResourceAssembler,
@@ -48,7 +48,7 @@ public class FeedbackDelegate {
         this.feedbackResourceAssembler = feedbackResourceAssembler;
         this.feedbackResourceToValue = feedbackResourceToValue;
     }
-    
+
     public FeedbackResource createFeedback(UUID id, FeedbackResource feedbackResource) {
         // Error if we try to overwrite an existing value
         if (feedbackRepository.findOne(id).isPresent()) {
@@ -63,6 +63,7 @@ public class FeedbackDelegate {
 
     public List<AuditedFeedbackResource> list() {
         // Grab the access audit records for feedback creation and map by UUID.
+        // TODO: validate that toUriComponentsBuilder() is OK and doesn't need replacing with UriComponentsBuilder.fromUriString(...toString()) to avoid double-encoding.
         String pathLike = ControllerLinkBuilder.linkTo(FeedbackController.class).toUriComponentsBuilder().pathSegment("%").build(false).getPath();
         List<? extends AccessAuditEntity> accessRecords = accessAuditRepository.findByWhatLike("%" + pathLike.toLowerCase());
         Function<AccessAuditEntity, UUID> uuidExtractor = accessRecord -> {

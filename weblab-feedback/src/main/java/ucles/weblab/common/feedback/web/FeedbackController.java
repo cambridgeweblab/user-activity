@@ -46,7 +46,7 @@ import static ucles.weblab.common.webapi.HateoasUtils.locationHeader;
 @RestController
 @RequestMapping("/api/feedback")
 public class FeedbackController extends SchemaProvidingController<FeedbackController> {
-    
+
     private static final Logger log = LoggerFactory.getLogger(FeedbackController.class);
 
     private final FeedbackDelegate feedbackDelegate;
@@ -55,7 +55,7 @@ public class FeedbackController extends SchemaProvidingController<FeedbackContro
     public FeedbackController(FeedbackDelegate feedbackDelegate) {
         this.feedbackDelegate = feedbackDelegate;
     }
-    
+
     @RequestMapping(value = "/", method = RequestMethod.GET, produces = MoreMediaTypes.APPLICATION_JSON_UTF8_VALUE)
     @ResponseStatus(HttpStatus.OK)
     @Secured(PartyRoles.ROLE_ADMIN)
@@ -95,6 +95,7 @@ public class FeedbackController extends SchemaProvidingController<FeedbackContro
            	private Map<String, JsonSchema> properties = idResourceSchema.asObjectSchema().getProperties();
         }
                 // TODO: This should probably be .setSchema(idResourceSchema) instead of the declaration above
+                // TODO: validate that toUriComponentsBuilder() is OK and doesn't need replacing with UriComponentsBuilder.fromUriString(...toString()) to avoid double-encoding.
                 .setHref(linkTo(FeedbackController.class).toUriComponentsBuilder().pathSegment("{id}").build(false).toString())
                 .setRel("create")
                 .setMethod(RequestMethod.PUT.toString());
