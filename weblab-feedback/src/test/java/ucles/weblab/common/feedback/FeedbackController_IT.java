@@ -19,6 +19,7 @@ import org.springframework.security.access.expression.method.MethodSecurityExpre
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MvcResult;
+import org.springframework.transaction.annotation.Transactional;
 import ucles.weblab.common.audit.aspect.AccessAuditAspect;
 import ucles.weblab.common.audit.domain.AccessAudit;
 import ucles.weblab.common.audit.domain.AccessAuditRepository;
@@ -33,32 +34,29 @@ import ucles.weblab.common.feedback.domain.FeedbackRepository;
 import ucles.weblab.common.feedback.domain.jpa.FeedbackEntityJpa;
 import ucles.weblab.common.feedback.domain.jpa.FeedbackFactoryJpa;
 import ucles.weblab.common.feedback.web.*;
+import ucles.weblab.common.i18n.service.LocalisationService;
+import ucles.weblab.common.i18n.service.impl.LocalisationServiceImpl;
 import ucles.weblab.common.schema.webapi.EnumSchemaCreator;
 import ucles.weblab.common.schema.webapi.ResourceSchemaCreator;
 import ucles.weblab.common.security.SecurityChecker;
 import ucles.weblab.common.xc.service.CrossContextConversionService;
 import ucles.weblab.common.xc.service.CrossContextConversionServiceImpl;
 
+import javax.persistence.AttributeConverter;
+import javax.persistence.Converter;
 import java.net.InetAddress;
 import java.net.URI;
 import java.net.UnknownHostException;
 import java.util.UUID;
 import java.util.function.Function;
 import java.util.function.Supplier;
-import javax.persistence.AttributeConverter;
-import javax.persistence.Converter;
-import org.springframework.transaction.annotation.Transactional;
 
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.notNullValue;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 /**
  * Test class to test REST API
@@ -142,19 +140,25 @@ public class FeedbackController_IT extends ucles.weblab.common.test.webapi.Abstr
             return new JsonSchemaFactory();
         }
 
+
+        @Bean
+        LocalisationService localisationService(MessageSource messageSource) {
+            return new LocalisationServiceImpl(messageSource);
+        }
+
         @Bean
         public ResourceSchemaCreator resourceSchemaCreator(SecurityChecker securityChecker,
                                                            CrossContextConversionService crossContextConversionService,
                                                            EnumSchemaCreator enumSchemaCreator,
                                                            JsonSchemaFactory jsonSchemaFactory,
-                                                           MessageSource messageSource) {
+                                                           LocalisationService localisationService) {
 
             return new ResourceSchemaCreator(securityChecker,
                     new ObjectMapper(),
                     crossContextConversionService,
                     enumSchemaCreator,
                     jsonSchemaFactory,
-                    messageSource);
+                    localisationService);
         }
 
         static class Converters {
