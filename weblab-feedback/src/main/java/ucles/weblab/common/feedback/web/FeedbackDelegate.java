@@ -2,6 +2,7 @@ package ucles.weblab.common.feedback.web;
 
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.hateoas.mvc.ControllerLinkBuilder;
+import org.springframework.transaction.annotation.Transactional;
 import ucles.weblab.common.audit.domain.AccessAuditEntity;
 import ucles.weblab.common.audit.domain.AccessAuditRepository;
 import ucles.weblab.common.feedback.domain.Feedback;
@@ -61,6 +62,7 @@ public class FeedbackDelegate {
         return feedbackResourceAssembler.toResource(saved);
     }
 
+    @Transactional(readOnly = true)
     public List<AuditedFeedbackResource> list() {
         // Grab the access audit records for feedback creation and map by UUID.
         // TODO: validate that toUriComponentsBuilder() is OK and doesn't need replacing with UriComponentsBuilder.fromUriString(...toString()) to avoid double-encoding.
