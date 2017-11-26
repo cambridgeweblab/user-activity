@@ -1,7 +1,5 @@
 package ucles.weblab.common.feedback.web;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.hateoas.mvc.ResourceAssemblerSupport;
 import org.springframework.stereotype.Component;
 import ucles.weblab.common.feedback.domain.FeedbackEntity;

@@ -30,7 +30,7 @@ public class FeedbackEntityJpa implements Persistable<UUID>, FeedbackEntity {
     private UUID id;
     
     @Transient
-    private boolean isNew;
+    private boolean unsaved;
 
     private String name;
 
@@ -39,11 +39,12 @@ public class FeedbackEntityJpa implements Persistable<UUID>, FeedbackEntity {
     private Integer score;
     private Instant created;
     
-    protected FeedbackEntityJpa() {}
+    protected FeedbackEntityJpa() { // For Hibernate, Jackson
+    }
     
     public FeedbackEntityJpa(UUID id, Feedback feedback) {
         this.id = id;
-        this.isNew = true;
+        this.unsaved = true;
         this.name = feedback.getName();
         this.comment = feedback.getComment().orElse(null);
         this.score = feedback.getScore().orElse(null);
@@ -52,12 +53,12 @@ public class FeedbackEntityJpa implements Persistable<UUID>, FeedbackEntity {
 
     @Override
     public boolean isNew() {
-        return isNew;
+        return unsaved;
     }
 
     @PostPersist
     void markNotNew() {
-        this.isNew = false;
+        this.unsaved = false;
     }
 
     @Override

@@ -3,8 +3,6 @@ package ucles.weblab.common.feedback.web;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.module.jsonSchema.JsonSchema;
 import com.fasterxml.jackson.module.jsonSchema.types.LinkDescriptionObject;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.ResourceSupport;
 import org.springframework.http.HttpStatus;
@@ -20,19 +18,19 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import ucles.weblab.common.identity.domain.Belongs;
 import ucles.weblab.common.identity.domain.PartyRoles;
-import ucles.weblab.common.webapi.AccessAudited;
-import ucles.weblab.common.webapi.MoreMediaTypes;
-import ucles.weblab.common.webapi.resource.ResourceListWrapper;
 import ucles.weblab.common.schema.webapi.MoreFormats;
 import ucles.weblab.common.schema.webapi.SchemaMediaTypes;
 import ucles.weblab.common.schema.webapi.SchemaProvidingController;
+import ucles.weblab.common.webapi.AccessAudited;
+import ucles.weblab.common.webapi.MoreMediaTypes;
+import ucles.weblab.common.webapi.resource.ResourceListWrapper;
 
+import javax.validation.Valid;
 import java.net.URI;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.UUID;
-import javax.validation.Valid;
 
 import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
@@ -47,8 +45,6 @@ import static ucles.weblab.common.webapi.HateoasUtils.locationHeader;
 @RequestMapping("/api/feedback")
 public class FeedbackController extends SchemaProvidingController<FeedbackController> {
 
-    private static final Logger log = LoggerFactory.getLogger(FeedbackController.class);
-
     private final FeedbackDelegate feedbackDelegate;
 
     @Autowired
@@ -56,7 +52,7 @@ public class FeedbackController extends SchemaProvidingController<FeedbackContro
         this.feedbackDelegate = feedbackDelegate;
     }
 
-    @RequestMapping(value = "/", method = RequestMethod.GET, produces = MoreMediaTypes.APPLICATION_JSON_UTF8_VALUE)
+    @RequestMapping(value = "/", method = GET, produces = MoreMediaTypes.APPLICATION_JSON_UTF8_VALUE)
     @ResponseStatus(HttpStatus.OK)
     @Secured(PartyRoles.ROLE_ADMIN)
     public ResourceListWrapper<AuditedFeedbackResource> list() {

@@ -33,6 +33,7 @@ import javax.servlet.http.HttpServletRequest;
  * @since 28/07/15
  */
 @Aspect
+@SuppressWarnings({"PMD.UnusedPrivateMethod", "PMD.UncommentedEmptyMethodBody"}) // These are how you declare @Pointcuts
 public class AccessAuditAspect {
     private final Logger logger = LoggerFactory.getLogger(getClass());
     private final AccessAuditRepository accessAuditRepository;

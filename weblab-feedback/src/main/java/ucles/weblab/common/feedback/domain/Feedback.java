@@ -1,7 +1,6 @@
 package ucles.weblab.common.feedback.domain;
 
 import java.util.Optional;
-import java.util.UUID;
 
 /**
  * Value object interface for feedback domain object. 

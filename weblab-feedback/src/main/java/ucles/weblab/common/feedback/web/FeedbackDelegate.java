@@ -10,10 +10,7 @@ import ucles.weblab.common.feedback.domain.FeedbackEntity;
 import ucles.weblab.common.feedback.domain.FeedbackFactory;
 import ucles.weblab.common.feedback.domain.FeedbackRepository;
 
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
-import java.util.UUID;
+import java.util.*;
 import java.util.function.Function;
 import java.util.stream.Stream;
 
@@ -67,7 +64,7 @@ public class FeedbackDelegate {
         // Grab the access audit records for feedback creation and map by UUID.
         // TODO: validate that toUriComponentsBuilder() is OK and doesn't need replacing with UriComponentsBuilder.fromUriString(...toString()) to avoid double-encoding.
         String pathLike = ControllerLinkBuilder.linkTo(FeedbackController.class).toUriComponentsBuilder().pathSegment("%").build(false).getPath();
-        List<? extends AccessAuditEntity> accessRecords = accessAuditRepository.findByWhatLike("%" + pathLike.toLowerCase());
+        List<? extends AccessAuditEntity> accessRecords = accessAuditRepository.findByWhatLike("%" + pathLike.toLowerCase(Locale.UK));
         Function<AccessAuditEntity, UUID> uuidExtractor = accessRecord -> {
             final String path = accessRecord.getWhat().getPath();
             return UUID.fromString(path.substring(path.lastIndexOf('/') + 1));

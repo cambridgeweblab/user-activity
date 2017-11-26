@@ -53,7 +53,9 @@ public class FeedbackResource extends ResourceSupport {
      * Protected no-arg constructor used by JSON. 
      * 
      */
-    protected FeedbackResource(){}
+    protected FeedbackResource() { // For Jackson
+
+    }
 
     public FeedbackResource(String pageName, Integer score, String comments) {
         this.pageName = pageName;

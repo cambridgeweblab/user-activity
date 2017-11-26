@@ -1,8 +1,5 @@
 package ucles.weblab.common.audit.domain;
 
-import org.springframework.data.jpa.repository.Query;
-
-import java.net.URI;
 import java.util.List;
 
 /**
