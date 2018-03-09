@@ -16,7 +16,7 @@
     </modules>
 
     <properties>
-        <common-java.version>0.5-SNAPSHOT</common-java.version>
+        <common-java.version>2.0.0-SNAPSHOT</common-java.version>
         <java.version>1.8</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
@@ -41,12 +41,12 @@
         <repository>
             <id>maven-s3-release-repo</id>
             <name>AWS Release Repository</name>
-            <url>s3://mvnrepository.ucles.org.uk/releases</url>
+            <url>http://mvnrepository.ucles.org.uk.s3-website-eu-west-1.amazonaws.com/releases</url>
         </repository>
         <repository>
             <id>maven-s3-snapshot-repo</id>
             <name>AWS Snapshot Repository</name>
-            <url>s3://mvnrepository.ucles.org.uk/snapshots</url>
+            <url>http://mvnrepository.ucles.org.uk.s3-website-eu-west-1.amazonaws.com/snapshots</url>
             <snapshots/>
         </repository>
     </repositories>
@@ -55,12 +55,12 @@
         <pluginRepository>
             <id>maven-s3-release-repo</id>
             <name>AWS Release Repository</name>
-            <url>s3://mvnrepository.ucles.org.uk/releases</url>
+            <url>http://mvnrepository.ucles.org.uk.s3-website-eu-west-1.amazonaws.com/releases</url>
         </pluginRepository>
         <pluginRepository>
             <id>maven-s3-snapshot-repo</id>
             <name>AWS Snapshot Repository</name>
-            <url>s3://mvnrepository.ucles.org.uk/snapshots</url>
+            <url>http://mvnrepository.ucles.org.uk.s3-website-eu-west-1.amazonaws.com/snapshots</url>
             <snapshots/>
         </pluginRepository>
     </pluginRepositories>
