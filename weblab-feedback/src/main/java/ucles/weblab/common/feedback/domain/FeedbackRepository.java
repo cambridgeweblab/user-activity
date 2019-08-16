@@ -9,7 +9,7 @@ import java.util.stream.Stream;
  * @author Sukhraj
  */
 public interface FeedbackRepository {
-    Optional<? extends FeedbackEntity> findOne(UUID id);
+    Optional<? extends FeedbackEntity> findById(UUID id);
     <T extends FeedbackEntity> T save(T entity);
 
     Stream<? extends FeedbackEntity> streamAllByOrderByCreatedAsc();

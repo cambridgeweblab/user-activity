@@ -49,7 +49,7 @@ public class FeedbackDelegate {
 
     public FeedbackResource createFeedback(UUID id, FeedbackResource feedbackResource) {
         // Error if we try to overwrite an existing value
-        if (feedbackRepository.findOne(id).isPresent()) {
+        if (feedbackRepository.findById(id).isPresent()) {
             throw new DataIntegrityViolationException("Already exists");
         }
 
