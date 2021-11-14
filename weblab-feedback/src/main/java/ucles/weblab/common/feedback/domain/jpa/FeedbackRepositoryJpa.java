@@ -8,13 +8,13 @@ import java.util.UUID;
 
 /**
  * JPA implementation for feedback entity, return values will be the JPA entity types.
- * 
+ *
  * @author Sukhraj
  */
 public interface FeedbackRepositoryJpa extends FeedbackRepository, Repository<FeedbackEntityJpa, UUID> {
-    
+
     @Override
-    Optional<? extends FeedbackEntityJpa> findOne(UUID id);
+    Optional<? extends FeedbackEntityJpa> findById(UUID id);
 
     <S extends FeedbackEntityJpa> S save(S s);
 
