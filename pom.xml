@@ -5,7 +5,7 @@
 
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>ucles.weblab</groupId>
+    <groupId>com.github.cambridgeweblab</groupId>
     <artifactId>weblab-user-activity</artifactId>
     <packaging>pom</packaging>
     <version>2.0.0-SNAPSHOT</version>
@@ -50,7 +50,7 @@
         <dependencies>
             <!-- WEBLAB COMMON -->
             <dependency>
-                <groupId>ucles.weblab</groupId>
+                <groupId>com.github.cambridgeweblab</groupId>
                 <artifactId>weblab-common-java</artifactId>
                 <version>${common-java.version}</version>
                 <type>pom</type>
@@ -101,9 +101,9 @@
                 </executions>
                 <dependencies>
                     <dependency>
-                        <groupId>ucles.weblab</groupId>
-                        <artifactId>weblab-lint</artifactId>
-                        <version>0.4-SNAPSHOT</version>
+                        <groupId>com.github.cambridgeweblab</groupId>
+                        <artifactId>java-lint-config-weblab</artifactId>
+                        <version>1.0.3</version>
                     </dependency>
                 </dependencies>
             </plugin>
