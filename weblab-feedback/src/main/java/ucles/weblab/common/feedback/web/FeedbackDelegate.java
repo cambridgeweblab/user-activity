@@ -1,7 +1,6 @@
 package ucles.weblab.common.feedback.web;
 
 import org.springframework.dao.DataIntegrityViolationException;
-import org.springframework.hateoas.mvc.ControllerLinkBuilder;
 import org.springframework.transaction.annotation.Transactional;
 import ucles.weblab.common.audit.domain.AccessAuditEntity;
 import ucles.weblab.common.audit.domain.AccessAuditRepository;
@@ -17,6 +16,7 @@ import java.util.stream.Stream;
 import static java.util.function.Function.identity;
 import static java.util.stream.Collectors.toList;
 import static java.util.stream.Collectors.toMap;
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 
 /**
  * Delegate class to handle interactions between repositories and REST controllers
@@ -56,14 +56,14 @@ public class FeedbackDelegate {
         final Feedback value = feedbackResourceToValue.apply(feedbackResource);
         final FeedbackEntity entity = feedbackFactory.newFeedback(id, value);
         final FeedbackEntity saved = feedbackRepository.save(entity);
-        return feedbackResourceAssembler.toResource(saved);
+        return feedbackResourceAssembler.toModel(saved);
     }
 
     @Transactional(readOnly = true)
     public List<AuditedFeedbackResource> list() {
         // Grab the access audit records for feedback creation and map by UUID.
         // TODO: validate that toUriComponentsBuilder() is OK and doesn't need replacing with UriComponentsBuilder.fromUriString(...toString()) to avoid double-encoding.
-        String pathLike = ControllerLinkBuilder.linkTo(FeedbackController.class).toUriComponentsBuilder().pathSegment("%").build(false).getPath();
+        String pathLike = linkTo(FeedbackController.class).toUriComponentsBuilder().pathSegment("%").build(false).getPath();
         List<? extends AccessAuditEntity> accessRecords = accessAuditRepository.findByWhatLike("%" + pathLike.toLowerCase(Locale.UK));
         Function<AccessAuditEntity, UUID> uuidExtractor = accessRecord -> {
             final String path = accessRecord.getWhat().getPath();

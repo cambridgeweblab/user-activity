@@ -39,6 +39,7 @@ import ucles.weblab.common.i18n.service.impl.LocalisationServiceImpl;
 import ucles.weblab.common.schema.webapi.EnumSchemaCreator;
 import ucles.weblab.common.schema.webapi.ResourceSchemaCreator;
 import ucles.weblab.common.security.SecurityChecker;
+import ucles.weblab.common.test.webapi.AbstractRestControllerIT;
 import ucles.weblab.common.xc.service.CrossContextConversionService;
 import ucles.weblab.common.xc.service.CrossContextConversionServiceImpl;
 
@@ -67,7 +68,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest
 @WebAppConfiguration("classpath:/public")
 @Transactional
-public class FeedbackController_IT extends ucles.weblab.common.test.webapi.AbstractRestController_IT {
+public class FeedbackController_IT extends AbstractRestControllerIT {
     @Configuration
     @EnableAutoConfiguration
     @EnableJpaRepositories(basePackageClasses = {FeedbackRepository.class, AccessAuditRepository.class})
@@ -195,18 +196,13 @@ public class FeedbackController_IT extends ucles.weblab.common.test.webapi.Abstr
 
     }
 
-    @Before
-    public void setup() throws Exception {
-        super.setup();
-    }
-
     @Test
     public void testCreateFeedback() throws Exception {
         FeedbackResource data = new FeedbackResource("Magic Number", 3, "De La Soul");
         final String json = this.json(data);
         final UUID uuid = UUID.randomUUID();
 
-        mockMvc.perform(put("/api/feedback/" + uuid.toString())
+        mockMvc.perform(put("/api/feedback/" + uuid)
                 .contentType(APPLICATION_JSON_UTF8)
                 .content(json))
                 .andExpect(status().isCreated())
@@ -221,7 +217,7 @@ public class FeedbackController_IT extends ucles.weblab.common.test.webapi.Abstr
         FeedbackResource data = new FeedbackResource("Magic Number", 3, "De La Soul");
         String json = this.json(data);
 
-        mockMvc.perform(put("/api/feedback/" + uuid.toString())
+        mockMvc.perform(put("/api/feedback/" + uuid)
                 .contentType(APPLICATION_JSON_UTF8)
                 .content(json))
                 .andExpect(status().isCreated())
@@ -230,7 +226,7 @@ public class FeedbackController_IT extends ucles.weblab.common.test.webapi.Abstr
 
         data = new FeedbackResource("Magic Number", 4, "Fraud");
         json = this.json(data);
-        mockMvc.perform(put("/api/feedback/" + uuid.toString())
+        mockMvc.perform(put("/api/feedback/" + uuid)
                 .contentType(APPLICATION_JSON_UTF8)
                 .content(json))
                 .andExpect(status().is4xxClientError());
@@ -243,7 +239,7 @@ public class FeedbackController_IT extends ucles.weblab.common.test.webapi.Abstr
         final String json = this.json(data);
         final UUID uuid = UUID.randomUUID();
 
-        mockMvc.perform(put("/api/feedback/" + uuid.toString())
+        mockMvc.perform(put("/api/feedback/" + uuid)
                 .header("User-Agent", "IntegrationTest/0.1-SNAPSHOT")
                 .contentType(APPLICATION_JSON_UTF8)
                 .content(json))

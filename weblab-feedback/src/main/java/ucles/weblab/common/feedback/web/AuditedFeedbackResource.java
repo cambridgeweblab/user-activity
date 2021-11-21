@@ -13,16 +13,16 @@ import java.time.Instant;
  * @since 12/01/16
  */
 public class AuditedFeedbackResource extends FeedbackResource {
-    @JsonSchema(format = JsonValueFormat.EMAIL_VALUE, readOnly = true)
+    @JsonSchema(format = "email", readOnly = true)
     @JsonSchemaMetadata(title = "Username", order = 50)
     private String username;
 
-    @JsonSchema(format = JsonValueFormat.DATE_TIME_VALUE, readOnly = true)
+    @JsonSchema(format = "date-time", readOnly = true)
     @JsonSchemaMetadata(title = "Time", order = 40)
     @JsonFormat(shape = JsonFormat.Shape.STRING)
     private Instant timestamp;
 
-    @JsonSchema(format = JsonValueFormat.IP_ADDRESS_VALUE, readOnly = true)
+    @JsonSchema(format = "ip-address", readOnly = true)
     @JsonSchemaMetadata(title = "IP Address", order = 70)
     private String ipAddress;
 

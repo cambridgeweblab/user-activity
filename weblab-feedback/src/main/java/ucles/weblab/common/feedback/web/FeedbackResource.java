@@ -1,7 +1,7 @@
 package ucles.weblab.common.feedback.web;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import org.springframework.hateoas.ResourceSupport;
+import org.springframework.hateoas.RepresentationModel;
 import ucles.weblab.common.schema.webapi.EnumConstant;
 import ucles.weblab.common.schema.webapi.JsonSchema;
 import ucles.weblab.common.schema.webapi.JsonSchemaMetadata;
@@ -17,14 +17,14 @@ import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
- * Feedback resource 
- * 
+ * Feedback resource
+ *
  * @author Sukhraj
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @XmlRootElement(name = "feedback")
 @XmlAccessorType(XmlAccessType.FIELD)
-public class FeedbackResource extends ResourceSupport {
+public class FeedbackResource extends RepresentationModel<FeedbackResource> {
 
     @XmlAttribute
     @NotNull
@@ -32,7 +32,7 @@ public class FeedbackResource extends ResourceSupport {
     @JsonSchemaMetadata(title = "Page name", order = 10)
     @JsonSchema(format = MoreFormats.CURRENT_VIEW_CONTEXT)
     private String pageName;
-    
+
     @XmlAttribute
     @Min(0)
     @Max(10)
@@ -43,15 +43,15 @@ public class FeedbackResource extends ResourceSupport {
             @EnumConstant("10")
     })
     private Integer score;
-    
+
     @XmlAttribute
     @JsonSchema(format = MoreFormats.TEXTAREA)
     @JsonSchemaMetadata(title = "Comments", order = 30, description = "Additional comments for the page")
     protected String comments;
-    
+
     /**
-     * Protected no-arg constructor used by JSON. 
-     * 
+     * Protected no-arg constructor used by JSON.
+     *
      */
     protected FeedbackResource() { // For Jackson
 

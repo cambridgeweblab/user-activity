@@ -4,12 +4,12 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.module.jsonSchema.JsonSchema;
 import com.fasterxml.jackson.module.jsonSchema.types.LinkDescriptionObject;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.hateoas.ResourceSupport;
+import org.springframework.hateoas.RepresentationModel;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.annotation.Secured;
-import org.springframework.security.web.bind.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -32,7 +32,7 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.UUID;
 
-import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 import static ucles.weblab.common.webapi.HateoasUtils.locationHeader;
 
@@ -71,7 +71,7 @@ public class FeedbackController extends SchemaProvidingController<FeedbackContro
         return new ResponseEntity<>(created, locationHeader(created), HttpStatus.CREATED);
     }
 
-    static class IdResource extends ResourceSupport {
+    static class IdResource extends RepresentationModel<IdResource> {
         @JsonProperty(value = "id", required = true)
         @ucles.weblab.common.schema.webapi.JsonSchema(format = MoreFormats.UUID)
         String uuid;
@@ -112,5 +112,10 @@ public class FeedbackController extends SchemaProvidingController<FeedbackContro
                 Optional.empty());
 
         return ResponseEntity.ok(schema);
+    }
+
+    @Override
+    public String getEntityTypeName() {
+        return null; // FIXME: What did this do. Seems unused
     }
 }
